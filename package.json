@@ -1,0 +1,26 @@
+{
+  "name": "vue-cli-plugin-pod",
+  "version": "0.0.1",
+  "description": "Extended cli to generate vue components & respective files",
+  "main": "generator/index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakashchokalingam/vue-cli-plugin-pod.git"
+  },
+  "keywords": [
+    "vue-pod"
+  ],
+  "author": "Prakash Chokalingam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prakashchokalingam/vue-cli-plugin-pod/issues"
+  },
+  "homepage": "https://github.com/prakashchokalingam/vue-cli-plugin-pod#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
+}
