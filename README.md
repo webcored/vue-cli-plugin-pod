@@ -1,13 +1,14 @@
-<div style="text-align:center">
+<p align="center">
   <img src="https://prakashchokalingam.github.io/vue-cli-plugin-pod/icon.png" height="100px" width="100px">
+ </p>
 
-  # vue-cli-plugin-pod
-  Extended cli to manage file templates for vue projects
-
-  ![ts](https://flat.badgen.net/badge/Built%20With/TypeScript/blue)
-![npm](https://img.shields.io/npm/v/vue-cli-plugin-pod?color=%2322d422&logoColor=%23fff&style=flat-square)
-![downloads](https://img.shields.io/npm/dt/vue-cli-plugin-pod?style=flat-square)
-</div>
+<h1 align="center">vue-cli-plugin-pod</h1>
+<p align="center">Extended cli to manage file templates for vue projects</p>
+<p align="center">
+  <img src="https://flat.badgen.net/badge/Built%20With/TypeScript/blue">
+  <img src="https://img.shields.io/npm/v/vue-cli-plugin-pod?color=%2322d422&logoColor=%23fff&style=flat-square">
+  <img src="https://img.shields.io/npm/dt/vue-cli-plugin-pod?style=flat-square">
+</p>
 
 ---
 
