@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-pod",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extended cli to generate vue components & respective files",
   "main": "./service/index.js",
   "scripts": {
