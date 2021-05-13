@@ -15,10 +15,8 @@ class Config extends Common {
       typeConfig.files.forEach((file: any) => {
         Object.keys(file).forEach((obj) => {
           const value = file[obj as keyof FileOptions];
-          if (typeof value === 'string') {
-            file[obj] = value.includes('${filename}')
-              ? '`' + value + '`'
-              : `'${value}'`;
+          if ((typeof value === 'string')) {
+            file[obj] = value.includes('${filename}') ? '`' + value + '`' : `'${value}'`;
           }
         });
         return file;
@@ -28,10 +26,7 @@ class Config extends Common {
     // HACK: to handle sub level
     config.component.files[1].tagAttributes = { type: `'css'`, scoped: true };
 
-    const stringifiedConfig: string = JSON.stringify(config, null, 2).replace(
-      /"/g,
-      ''
-    );
+    const stringifiedConfig: string = JSON.stringify(config, null, 2).replace(/"/g, '');
     const template = `const vuepodConfig = require('vue-cli-plugin-pod/pod.config.js'); \n\nmodule.exports = vuepodConfig.extend(function(filename) { return ${stringifiedConfig}})`;
 
     const filePath = `${projectPath}/pod.config.js`;

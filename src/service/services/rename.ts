@@ -1,5 +1,5 @@
-import { apiTypeMock, FileObjects } from '../types';
-import { Common } from './common';
+import { apiTypeMock, FileObjects } from "../types";
+import { Common } from "./common";
 import { renameSync, ensureDirSync, existsSync } from 'fs-extra';
 
 class Rename extends Common {
@@ -11,6 +11,7 @@ class Rename extends Common {
       this.throwInvalidateError();
     }
 
+
     this.projectPath = api.getCwd();
 
     const oldFileInfo = this.setFileInfo(oldPath);
@@ -19,6 +20,7 @@ class Rename extends Common {
     const oldConfig = await this.setConfig(oldFileInfo.fileName);
     const newConfig = await this.setConfig(newFileInfo.fileName, true);
 
+
     // type config
     const oldFiles: FileObjects = oldConfig[type];
     const newFiles: FileObjects = newConfig[type];
@@ -26,12 +28,13 @@ class Rename extends Common {
     this.renameFiles(oldFiles, newFiles);
   }
 
-  renameFiles(oldFiles: FileObjects, newFiles: FileObjects): void {
+  renameFiles(
+    oldFiles: FileObjects,
+    newFiles: FileObjects,
+  ): void {
     oldFiles.files.forEach((file, index) => {
-      const { filePath: oldFilePath, fileDir: oldFileDir } =
-        this.constructFilePath(file);
-      const { filePath: newFilePath, fileDir: newFileDir } =
-        this.constructFilePath(newFiles.files[index]);
+      const { filePath: oldFilePath, fileDir: oldFileDir } = this.constructFilePath(file);
+      const { filePath: newFilePath, fileDir: newFileDir } = this.constructFilePath(newFiles.files[index]);
       // old file present
       if (existsSync(oldFilePath)) {
         ensureDirSync(newFileDir);
@@ -39,10 +42,7 @@ class Rename extends Common {
         this.deleteDir(oldFileDir);
         this.log('success', `Renamed: ${oldFilePath} -> ${newFilePath}`);
       } else {
-        this.log(
-          'error',
-          `File not exists to rename: ${oldFilePath} -> ${newFilePath}`
-        );
+        this.log('error', `File not exists to rename: ${oldFilePath} -> ${newFilePath}`);
       }
     });
   }
