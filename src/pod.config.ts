@@ -1,7 +1,7 @@
-import { CONFIG, DFunction } from './service/types';
+import { CONFIG, DFunction } from "./service/types";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const extend = function (configMethod: DFunction<CONFIG>) {
+const extend = function(configMethod: DFunction<CONFIG>) {
   return configMethod;
 };
 
@@ -14,7 +14,7 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
         basepath: `src/components`,
         content: `<div><!-- component : ${filename} --></div>`,
         tagname: 'template',
-        isTemplateFile: true
+        isTemplateFile: true,
       },
       {
         filepath: `${filename}/style.css`,
@@ -22,20 +22,20 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
         content: `.${filename} { /*  your styles ... */ }`,
         tagname: 'style',
         tagAttributes: {
-          type: 'css',
-          scoped: 'true'
+          'type': 'css',
+          'scoped': 'true'
         }
       },
       {
         filepath: `${filename}/script.js`,
         basepath: `src/components`,
         content: `export default { /* component: ${filename} */ }`,
-        tagname: 'script'
+        tagname: 'script',
       },
       {
         filepath: `${filename}/test.js`,
         basepath: `src/components`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* component: ${filename} */ }`,
       }
     ]
   },
@@ -44,12 +44,12 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
       {
         filepath: `${filename}/${filename}.js`,
         basepath: `src/directivies`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* component: ${filename} */ }`,
       },
       {
         filepath: `${filename}/test.js`,
         basepath: `src/directivies`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* component: ${filename} */ }`,
       }
     ]
   },
@@ -58,15 +58,18 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
       {
         filepath: `${filename}/${filename}.js`,
         basepath: `src/mixins`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* component: ${filename} */ }`,
       },
       {
         filepath: `${filename}/tes.js`,
         basepath: `src/mixins`,
-        content: `export default { /* component: ${filename} */ }`
-      }
+        content: `export default { /* component: ${filename} */ }`,
+      },
     ]
   }
 });
 
-export { extend, defaultConfigMethod };
+export {
+  extend,
+  defaultConfigMethod
+};

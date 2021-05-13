@@ -1,9 +1,10 @@
 import { removeSync } from 'fs-extra';
-import { apiTypeMock, FileOptions } from '../types';
-import { Common } from './common';
+import { apiTypeMock, FileOptions } from "../types";
+import { Common } from "./common";
 
 class DeleteFiles extends Common {
   async exec(api: apiTypeMock, _options: null, args: string[]): Promise<void> {
+
     await this.setup(api.getCwd(), args);
 
     const typeConfig = this.config[this.fileType];
@@ -12,7 +13,7 @@ class DeleteFiles extends Common {
 
     // delete component files
     if (this.fileType === 'component' && typeConfig.singleFile) {
-      deletables = typeConfig.files.filter((file) => !file.tagname); // delete only non tagables
+      deletables = typeConfig.files.filter(file => !file.tagname); // delete only non tagables
     }
 
     this.deleteFiles(deletables);
@@ -29,3 +30,4 @@ class DeleteFiles extends Common {
 }
 
 export { DeleteFiles };
+
