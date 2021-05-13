@@ -5,20 +5,19 @@ interface DynamicObjects {
 interface apiTypeMock {
   getCwd: () => string;
   registerCommand: (
-    command:string,
+    command: string,
     object: DynamicObjects,
-    method: (_options: null, args: string[]) => Promise<void> | void,
+    method: (_options: null, args: string[]) => Promise<void> | void
   ) => void;
 }
-
 
 interface FileOptions {
   filepath: string;
   content: string;
   basepath?: string;
   tagname?: string;
-  isTemplateFile?: boolean
-  tagAttributes?: DynamicObjects
+  isTemplateFile?: boolean;
+  tagAttributes?: DynamicObjects;
 }
 
 interface FileObjects {
@@ -38,9 +37,9 @@ interface setFileInfoResponse {
 type DFunction<A> = (name: string) => A;
 
 interface constructedFileOptions {
-  fileDir: string,
-  fileName: string,
-  filePath: string,
+  fileDir: string;
+  fileName: string;
+  filePath: string;
 }
 
 export {
@@ -53,4 +52,3 @@ export {
   DFunction,
   constructedFileOptions
 };
-
