@@ -92,7 +92,7 @@ class Common {
     if (!types.includes(type)) {
       this.log(
         'error',
-        `Invalid type '${type}' requested. Allowed types: [${types.join(',')}]`
+        `Invalid type '${type}' requested. Allowed types: [${types.join(', ')}]`
       );
       process.exit();
     }
