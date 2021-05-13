@@ -5,23 +5,21 @@ const extend = function(configMethod: DFunction<CONFIG>) {
   return configMethod;
 };
 
-const defaultConfigMethod = (name: string): CONFIG => ({
+const defaultConfigMethod = (filename: string): CONFIG => ({
   component: {
     singleFile: false,
     files: [
       {
-        filename: `${name}`,
-        basepath: `src/components/${name}`,
-        extension: 'vue',
-        content: `<div><!-- component : ${name} --></div>`,
+        filepath: `${filename}/${filename}.vue`,
+        basepath: `src/components`,
+        content: `<div><!-- component : ${filename} --></div>`,
         tagname: 'template',
         isTemplateFile: true,
       },
       {
-        filename: 'style',
-        basepath: `src/components/${name}`,
-        extension: 'css',
-        content: `.${name} { /*  your styles ... */ }`,
+        filepath: `${filename}/style.css`,
+        basepath: `src/components`,
+        content: `.${filename} { /*  your styles ... */ }`,
         tagname: 'style',
         tagAttributes: {
           'type': 'css',
@@ -29,49 +27,43 @@ const defaultConfigMethod = (name: string): CONFIG => ({
         }
       },
       {
-        filename: 'script',
-        basepath: `src/components/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/script.js`,
+        basepath: `src/components`,
+        content: `export default { /* component: ${filename} */ }`,
         tagname: 'script',
       },
       {
-        filename: 'test',
-        basepath: `src/components/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/test.js`,
+        basepath: `src/components`,
+        content: `export default { /* component: ${filename} */ }`,
       }
     ]
   },
   directive: {
     files: [
       {
-        filename: `${name}`,
-        basepath: `src/directivies/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/${filename}.js`,
+        basepath: `src/directivies`,
+        content: `export default { /* component: ${filename} */ }`,
       },
       {
-        filename: 'test',
-        basepath: `src/directivies/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/test.js`,
+        basepath: `src/directivies`,
+        content: `export default { /* component: ${filename} */ }`,
       }
     ]
   },
-  mixins: {
+  mixin: {
     files: [
       {
-        filename: `${name}`,
-        basepath: `src/mixins/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/${filename}.js`,
+        basepath: `src/mixins`,
+        content: `export default { /* component: ${filename} */ }`,
       },
       {
-        filename: 'test',
-        basepath: `src/mixins/${name}`,
-        extension: 'js',
-        content: `export default { /* component: ${name} */ }`,
+        filepath: `${filename}/tes.js`,
+        basepath: `src/mixins`,
+        content: `export default { /* component: ${filename} */ }`,
       },
     ]
   }

@@ -1,6 +1,6 @@
 import { apiTypeMock, FileObjects } from "../types";
 import { Common } from "./common";
-import { renameSync, ensureDirSync  } from 'fs-extra';
+import { renameSync, ensureDirSync, existsSync } from 'fs-extra';
 
 class Rename extends Common {
   async exec(api: apiTypeMock, _options: null, args: string[]): Promise<void> {
@@ -35,10 +35,15 @@ class Rename extends Common {
     oldFiles.files.forEach((file, index) => {
       const { filePath: oldFilePath, fileDir: oldFileDir } = this.constructFilePath(file);
       const { filePath: newFilePath, fileDir: newFileDir } = this.constructFilePath(newFiles.files[index]);
-      ensureDirSync(newFileDir);
-      renameSync(oldFilePath, newFilePath);
-      this.deleteDir(oldFileDir);
-      this.log('success', `Renamed: ${oldFilePath} -> ${newFilePath}`);
+      // old file present
+      if (existsSync(oldFilePath)) {
+        ensureDirSync(newFileDir);
+        renameSync(oldFilePath, newFilePath);
+        this.deleteDir(oldFileDir);
+        this.log('success', `Renamed: ${oldFilePath} -> ${newFilePath}`);
+      } else {
+        this.log('error', `File not exists to rename: ${oldFilePath} -> ${newFilePath}`);
+      }
     });
   }
 }

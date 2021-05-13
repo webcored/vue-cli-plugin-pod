@@ -13,8 +13,7 @@ interface apiTypeMock {
 
 
 interface FileOptions {
-  filename: string;
-  extension: string;
+  filepath: string;
   content: string;
   basepath?: string;
   tagname?: string;
@@ -38,6 +37,12 @@ interface setFileInfoResponse {
 
 type DFunction<A> = (name: string) => A;
 
+interface constructedFileOptions {
+  fileDir: string,
+  fileName: string,
+  filePath: string,
+}
+
 export {
   apiTypeMock,
   DynamicObjects,
@@ -45,6 +50,7 @@ export {
   FileObjects,
   CONFIG,
   setFileInfoResponse,
-  DFunction
+  DFunction,
+  constructedFileOptions
 };
 
