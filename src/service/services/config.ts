@@ -32,7 +32,7 @@ class Config extends Common {
       /"/g,
       ''
     );
-    const template = `const vuepodConfig = require('vue-cli-plugin-pod/pod.config.js'); \n\nmodule.exports = vuepodConfig.extend(function(filename) { return ${stringifiedConfig}})`;
+    const template = `const vuepodConfig = require('vue-cli-plugin-pod/pod.config.js'); \n\nmodule.exports = vuepodConfig.extend(function(filename) { return ${stringifiedConfig}});`;
 
     const filePath = `${projectPath}/pod.config.js`;
     writeFileSync(filePath, template);

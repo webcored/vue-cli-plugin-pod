@@ -44,12 +44,12 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
       {
         filepath: `${filename}/${filename}.js`,
         basepath: `src/directivies`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* directive: ${filename} */ }`
       },
       {
         filepath: `${filename}/test.js`,
         basepath: `src/directivies`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* directive: ${filename} */ }`
       }
     ]
   },
@@ -58,12 +58,12 @@ const defaultConfigMethod = (filename: string): CONFIG => ({
       {
         filepath: `${filename}/${filename}.js`,
         basepath: `src/mixins`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* mixin: ${filename} */ }`
       },
       {
-        filepath: `${filename}/tes.js`,
+        filepath: `${filename}/test.js`,
         basepath: `src/mixins`,
-        content: `export default { /* component: ${filename} */ }`
+        content: `export default { /* mixin: ${filename} */ }`
       }
     ]
   }
