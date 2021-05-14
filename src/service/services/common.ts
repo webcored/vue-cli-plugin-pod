@@ -1,8 +1,14 @@
 import * as chalk from 'chalk';
 import { rmdirSync } from 'fs-extra';
-import { relative } from 'path';
+import { relative, parse } from 'path';
 import { defaultConfigMethod } from '../../pod.config';
-import { CONFIG, DFunction, FileOptions, setFileInfoResponse } from '../types';
+import {
+  CONFIG,
+  constructedFileOptions,
+  DFunction,
+  FileOptions,
+  setFileInfoResponse
+} from '../types';
 
 class Common {
   public configFile: string;
@@ -48,7 +54,7 @@ class Common {
     try {
       file = `${this.projectPath}/${configFilePath}`;
       configMethod = await import(file);
-    } catch(e) {
+    } catch (e) {
       file = 'default';
       configMethod = defaultConfigMethod;
     }
@@ -57,7 +63,10 @@ class Common {
     this.config = configMethod(fileName);
 
     if (!silence) {
-      const msg: string = (file === 'default') ? 'Using default config...' : `Using config: ${file}`;
+      const msg: string =
+        file === 'default'
+          ? 'Using default config...'
+          : `Using config: ${file}`;
       this.log('info', msg);
     }
 
@@ -81,34 +90,40 @@ class Common {
   public validateType(type: string): void {
     const types: string[] = Object.keys(this.config);
     if (!types.includes(type)) {
-      this.log('error', `Invalid type '${type}' requested. Allowed types: [${types.join(',')}]`);
+      this.log(
+        'error',
+        `Invalid type '${type}' requested. Allowed types: [${types.join(', ')}]`
+      );
       process.exit();
     }
   }
 
-  public constructFilePath (file: FileOptions, customFileLoc?: string): {
-    fileDir: string,
-    filename: string,
-    filePath: string
-  } {
-    let fileDir = `.`;
+  public constructFilePath(
+    file: FileOptions,
+    customFilePath?: string
+  ): constructedFileOptions {
+    let fileFulPath = `.`;
 
     // base path
     if (file.basepath) {
-      fileDir += `/${file.basepath}`;
+      fileFulPath += `/${file.basepath}`;
     }
 
-    // file loc
-    const fileLoc = customFileLoc || this.filePath;
-    if (fileLoc) {
-      fileDir += `/${fileLoc}`;
+    // file requested path
+    const fileLoc = customFilePath || this.filePath;
+    if (this.filePath) {
+      fileFulPath += `/${fileLoc}`;
     }
 
+    // config file path
+    fileFulPath += `/${file.filepath}`;
 
-    const filename = `${file.filename}.${file.extension}`;
-    const filePath = `${fileDir}/${filename}`;
-
-    return { fileDir, filename, filePath };
+    const { dir: fileDir, base: fileName } = parse(fileFulPath);
+    return {
+      fileDir,
+      fileName,
+      filePath: fileFulPath
+    };
   }
 
   public log(type: string, msg: string): void {
@@ -141,7 +156,8 @@ class Common {
     return rPath.includes('/') ? rPath : `./${rPath}`;
   }
 
-  public deleteDir(dirpath: string): void { // deletes directory recursively if empty
+  public deleteDir(dirpath: string): void {
+    // deletes directory recursively if empty
     const paths: string[] = dirpath.split('/');
     let fullpath: string = dirpath;
 
@@ -150,7 +166,7 @@ class Common {
         rmdirSync(fullpath);
         paths.pop();
         fullpath = paths.join('/');
-      } catch(e) {
+      } catch (e) {
         break;
       }
     }

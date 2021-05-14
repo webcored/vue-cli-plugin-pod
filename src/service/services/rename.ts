@@ -1,6 +1,6 @@
-import { apiTypeMock, FileObjects } from "../types";
-import { Common } from "./common";
-import { renameSync, ensureDirSync  } from 'fs-extra';
+import { apiTypeMock, FileObjects } from '../types';
+import { Common } from './common';
+import { renameSync, ensureDirSync, existsSync } from 'fs-extra';
 
 class Rename extends Common {
   async exec(api: apiTypeMock, _options: null, args: string[]): Promise<void> {
@@ -11,7 +11,6 @@ class Rename extends Common {
       this.throwInvalidateError();
     }
 
-
     this.projectPath = api.getCwd();
 
     const oldFileInfo = this.setFileInfo(oldPath);
@@ -20,7 +19,6 @@ class Rename extends Common {
     const oldConfig = await this.setConfig(oldFileInfo.fileName);
     const newConfig = await this.setConfig(newFileInfo.fileName, true);
 
-
     // type config
     const oldFiles: FileObjects = oldConfig[type];
     const newFiles: FileObjects = newConfig[type];
@@ -28,17 +26,24 @@ class Rename extends Common {
     this.renameFiles(oldFiles, newFiles);
   }
 
-  renameFiles(
-    oldFiles: FileObjects,
-    newFiles: FileObjects,
-  ): void {
+  renameFiles(oldFiles: FileObjects, newFiles: FileObjects): void {
     oldFiles.files.forEach((file, index) => {
-      const { filePath: oldFilePath, fileDir: oldFileDir } = this.constructFilePath(file);
-      const { filePath: newFilePath, fileDir: newFileDir } = this.constructFilePath(newFiles.files[index]);
-      ensureDirSync(newFileDir);
-      renameSync(oldFilePath, newFilePath);
-      this.deleteDir(oldFileDir);
-      this.log('success', `Renamed: ${oldFilePath} -> ${newFilePath}`);
+      const { filePath: oldFilePath, fileDir: oldFileDir } =
+        this.constructFilePath(file);
+      const { filePath: newFilePath, fileDir: newFileDir } =
+        this.constructFilePath(newFiles.files[index]);
+      // old file present
+      if (existsSync(oldFilePath)) {
+        ensureDirSync(newFileDir);
+        renameSync(oldFilePath, newFilePath);
+        this.deleteDir(oldFileDir);
+        this.log('success', `Renamed: ${oldFilePath} -> ${newFilePath}`);
+      } else {
+        this.log(
+          'error',
+          `File not exists to rename: ${oldFilePath} -> ${newFilePath}`
+        );
+      }
     });
   }
 }
