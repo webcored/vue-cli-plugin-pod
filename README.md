@@ -27,13 +27,13 @@ Add this [vue cli plugin](https://cli.vuejs.org/guide/plugins-and-presets.html) 
 vue add pod
 ```
 
-> once installed your project can have access to the following  tasks:
+> once installed, your project will have access to the following  tasks:
 
 ---
 
 ### Generate
 
-Create template files for the specified file type
+Creates template files for the specified file type
 
 ```
 npm run generate <filetype> <file name or path>
@@ -44,7 +44,7 @@ Example: `npm run generate component UI/Button`
 
 ### Rename
 
-Rename template files for the specified file type
+Renames template files for the specified file type
 
 ```
 npm run rename <filetype> <old file name or path> <new file name or path>
@@ -54,7 +54,7 @@ Example: `npm run rename component icon avatar`
 
 ### Delete
 
-Delete template files for the specified file type
+Deletes template files for the specified file type
 
 ```
 npm run delete <filetype> <file name or path>
@@ -89,7 +89,7 @@ Available config file options:
 | tagname `optional` | string |  tag name applicable for component files alone. It specified the tag should be used while refering in the template file |
 | tagAttributes `optional` | Object  | Required attributes for file while refering the file in template file|
 
-> Only `component` filetype will accept an object `singleFile: true` which decides wheather to follow vue single file structure by infering the component files contents to the template file  **or** create multiple files while generating a component and refer them in the template file.
+> Only `component` filetype will accept an object `singleFile: true` which decides whether to follow vue single file structure by infering the component files contents to the template file  **or** create multiple files while generating a component and refer them in the template file.
 
 ---
 
