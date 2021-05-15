@@ -1,7 +1,7 @@
 {
   "name": "vue-cli-plugin-pod",
-  "version": "0.0.4",
-  "description": "Extended cli to generate vue components & respective files",
+  "version": "0.0.5",
+  "description": "Extended cli to manage vue project files",
   "main": "./service/index.js",
   "scripts": {
     "tsc": "tsc",
@@ -24,6 +24,9 @@
     "url": "https://github.com/prakashchokalingam/vue-cli-plugin-pod/issues"
   },
   "homepage": "https://github.com/prakashchokalingam/vue-cli-plugin-pod#readme",
+  "engines": {
+    "node": ">= 12.0.0"
+  },
   "dependencies": {
     "@types/fs-extra": "^9.0.11",
     "chalk": "^4.1.1",
