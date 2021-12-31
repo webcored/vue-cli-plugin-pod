@@ -1,5 +1,5 @@
  <p align="center">
-  <img src="https://prakashchokalingam.github.io/vue-cli-plugin-pod/logo.png" height="100px" width="100px">
+  <img src="https://webcored.github.io/vue-cli-plugin-pod/logo.png" height="100px" width="100px">
  </p>
 
 <h1 align="center">vue-cli-plugin-pod</h1>
